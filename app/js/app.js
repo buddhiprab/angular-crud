@@ -1,0 +1,23 @@
+angular.module('movieApp',['ui.router','ngResource','movieApp.controllers','movieApp.services']);
+
+angular.module('movieApp').config(function($stateProvider,$httpProvider){
+    $stateProvider.state('movies',{
+        url:'/movies',
+        templateUrl:'app/partials/movies.html',
+        controller:'MovieListController'
+    }).state('viewMovie',{
+       url:'/movies/:id/view',
+       templateUrl:'app/partials/movie-view.html',
+       controller:'MovieViewController'
+    }).state('newMovie',{
+        url:'/movies/new',
+        templateUrl:'app/partials/movie-add.html',
+        controller:'MovieCreateController'
+    }).state('editMovie',{
+        url:'/movies/:id/edit',
+        templateUrl:'app/partials/movie-edit.html',
+        controller:'MovieEditController'
+    });
+}).run(function($state){
+   $state.go('movies');
+});
